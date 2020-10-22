@@ -5,7 +5,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.HdfsConfiguration;
-import org.apache.hadoop.hdfs.NameNodeProxies;
+import org.apache.hadoop.hdfs.NameNodeProxiesClient;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.tools.GetUserMappingsProtocol;
 import org.slf4j.Logger;
@@ -34,27 +34,29 @@ public class ContextCommands implements CommandMarker {
     private boolean showResultCode = false;
     private boolean failOnError;
 
-    private GetUserMappingsProtocol userMappingsProtocol;
-
-    @PostConstruct
-    public void init() {
-        try {
-            final HdfsConfiguration conf = new HdfsConfiguration();
-            userMappingsProtocol = NameNodeProxies.createProxy(conf, FileSystem.getDefaultUri(conf),
-                    GetUserMappingsProtocol.class).getProxy();
-        } catch (Exception e) {
-            logger.error("Failed to create proxy to get user groups", e);
-        }
-    }
-
+//    private GetUserMappingsProtocol userMappingsProtocol;
+//
+//    @PostConstruct
+//    public void init() {
+//        try {
+//            final HdfsConfiguration conf = new HdfsConfiguration();
+//            userMappingsProtocol = NameNodeProxiesClient.createProxy(
+//            		conf, FileSystem.getDefaultUri(conf),
+//                    GetUserMappingsProtocol.class).getProxy();
+//        } catch (Exception e) {
+//            logger.error("Failed to create proxy to get user groups", e);
+//        }
+//    }
+//
     public String[] getGroupsForUser(String username) {
-        if (userMappingsProtocol != null) {
-            try {
-                return userMappingsProtocol.getGroupsForUser(username);
-            } catch (IOException e) {
-                return new String[0];
-            }
-        }
+    	// TODO Unsupported here ...
+//        if (userMappingsProtocol != null) {
+//            try {
+//                return userMappingsProtocol.getGroupsForUser(username);
+//            } catch (IOException e) {
+//                return new String[0];
+//            }
+//        }
         return new String[0];
     }
 

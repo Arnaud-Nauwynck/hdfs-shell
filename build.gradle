@@ -1,12 +1,13 @@
 buildscript {
     repositories {
+		mavenCentral()
         maven { url 'http://repo.spring.io/libs-release' }
         maven { url 'http://repo.spring.io/plugins-release' }
     }
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
-        classpath 'org.springframework:springloaded:1.2.4.RELEASE'
+        classpath 'org.springframework:springloaded:1.2.8.RELEASE'
     }
 }
 
@@ -42,6 +43,7 @@ springBoot {
 
 
 repositories {
+	mavenCentral()
     maven { url 'https://artifactory.int.avast.com/artifactory/maven' }
     maven { url 'http://repo.spring.io/libs-release' }
     maven { url 'http://repo.spring.io/plugins-release' }
@@ -78,7 +80,7 @@ dependencies {
     compile 'com.kohlschutter.junixsocket:junixsocket-common:2.0.4'
 
     compile "org.apache.commons:commons-lang3:3.3.2"
-    compile "org.apache.hadoop:hadoop-client:2.6.0"
+    compile "org.apache.hadoop:hadoop-client:3.3.0"
 
     testCompile 'junit:junit:4.12'
     testCompile("org.springframework.boot:spring-boot-starter-test:1.4.2.RELEASE")
